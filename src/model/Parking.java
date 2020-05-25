@@ -3,11 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Parking {
+public class Parking<T> {
 
     private String code;
     public String name;
-    public List<Vehicle> vehicles = new ArrayList<>();
+    public int capacity = 15;
+    public List<T> vehicles = new ArrayList<>();
 
     public Parking(String code, String name){
         this.code = code;
@@ -16,7 +17,7 @@ public class Parking {
 
     public String calculateTotalPrice(){
         Integer price=0;
-       for(Vehicle v : vehicles){
+       for(T v : vehicles){
             if(v instanceof UnregisteredTruck){
                 price += ((UnregisteredTruck) v).payTollGate();
             }else if(v instanceof  UnregisteredCar){
@@ -27,7 +28,7 @@ public class Parking {
        return price.toString() + "EUR";
     }
 
-    public void add(Vehicle v){
+    public void add(T v){
         vehicles.add(v);
     }
 }
