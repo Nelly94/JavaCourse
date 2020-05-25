@@ -9,7 +9,31 @@ public abstract class Vehicle {
     public int gaz = 100;
 
     public Vehicle(String brand){
+        id = count++;
         this.brand = brand;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public int getGaz() {
+        return gaz;
+    }
+
+    public void setGaz(int gaz) {
+        this.gaz = gaz;
+    }
 }
