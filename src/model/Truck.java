@@ -2,8 +2,6 @@ package model;
 
 public abstract class Truck extends Vehicle{
 
-    public String brand;
-
     public Truck(String brand) {
         super(brand);
     }

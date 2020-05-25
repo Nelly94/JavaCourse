@@ -4,6 +4,7 @@ public final class UnregisteredCar extends Car implements TollGatePayable{
 
     public UnregisteredCar(String brand) {
         super(brand);
+        System.out.println("Unregistered Car " + this.brand + " created with id: " + this.id);
     }
 
     @Override
