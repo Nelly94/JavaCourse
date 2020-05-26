@@ -3,13 +3,23 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Parking<T> {
+public class Parking<T> implements Comparable<Parking>{
 
     private String code;
     public String name;
     public int capacity = 15;
     public List<T> vehicles = new ArrayList<>();
     public List<TollGate> tollGates = new ArrayList<>();
+
+    @Override
+    public int compareTo(Parking parking) {
+        if(this.vehicles.size() < parking.vehicles.size()){
+            return 1;
+        }else if(this.vehicles.size() > parking.vehicles.size()){
+            return -1;
+        }
+        return 0;
+    }
 
     /**
      * Toll gate inner class
@@ -57,7 +67,7 @@ public class Parking<T> {
         }
     }
 
-    public String calculateTotalPrice(){
+    public Integer calculateTotalPrice(){
         Integer price=0;
        for(T v : vehicles){
             if(v instanceof UnregisteredTruck){
@@ -67,7 +77,7 @@ public class Parking<T> {
             }
        }
 
-       return price.toString() + "EUR";
+        return price;
     }
 
     public void add(T v){
