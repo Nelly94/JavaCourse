@@ -2,15 +2,8 @@ package model;
 
 public abstract class Truck extends Vehicle{
 
-    public Truck(String brand) {
-        super(brand);
+    public Truck(String brand, String plate) {
+        super(brand, plate);
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getBrand(){
-        return brand;
-    }
 }

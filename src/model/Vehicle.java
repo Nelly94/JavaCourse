@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public abstract class Vehicle {
 
     private static int count=0;
@@ -7,10 +9,12 @@ public abstract class Vehicle {
     public long id;
     public String brand;
     public int gaz = 100;
+    public String plate;
 
-    public Vehicle(String brand){
+    public Vehicle(String brand, String plate){
         id = count++;
         this.brand = brand;
+        this.plate = plate;
     }
 
     public long getId() {
@@ -35,5 +39,26 @@ public abstract class Vehicle {
 
     public void setGaz(int gaz) {
         this.gaz = gaz;
+    }
+
+    public String getPlate() {
+        return plate;
+    }
+
+    public void setPlate(String plate) {
+        this.plate = plate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vehicle vehicle = (Vehicle) o;
+        return Objects.equals(plate, vehicle.plate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(plate);
     }
 }
