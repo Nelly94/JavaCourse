@@ -11,16 +11,6 @@ public class Parking<T> implements Comparable<Parking>{
     public List<T> vehicles = new ArrayList<>();
     public List<TollGate> tollGates = new ArrayList<>();
 
-    @Override
-    public int compareTo(Parking parking) {
-        if(this.vehicles.size() < parking.vehicles.size()){
-            return 1;
-        }else if(this.vehicles.size() > parking.vehicles.size()){
-            return -1;
-        }
-        return 0;
-    }
-
     /**
      * Toll gate inner class
      */
@@ -82,5 +72,15 @@ public class Parking<T> implements Comparable<Parking>{
 
     public void add(T v){
         vehicles.add(v);
+    }
+
+    @Override
+    public int compareTo(Parking parking) {
+        if(this.vehicles.size() < parking.vehicles.size()){
+            return 1;
+        }else if(this.vehicles.size() > parking.vehicles.size()){
+            return -1;
+        }
+        return 0;
     }
 }

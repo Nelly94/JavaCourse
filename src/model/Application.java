@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class Application {
@@ -40,9 +39,7 @@ public class Application {
         }
 
         System.out.println("Annonymous:");
-        Collections.sort(parkings, new Comparator<Parking>() {
-            @Override
-            public int compare(Parking pk1, Parking pk2) {
+        Collections.sort(parkings, (pk1, pk2) -> {
                 if(pk1.calculateTotalPrice() < pk2.calculateTotalPrice()){
                     return 1;
                 }else if(pk1.calculateTotalPrice() > pk2.calculateTotalPrice()){
@@ -50,7 +47,7 @@ public class Application {
                 }
                 return 0;
             }
-        });
+        );
         for(Parking pk : parkings){
             System.out.println("-" + pk.name + ": " + pk.calculateTotalPrice() + "EUR");
         }
