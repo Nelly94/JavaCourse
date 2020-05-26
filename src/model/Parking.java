@@ -1,14 +1,14 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Parking<T> implements Comparable<Parking>{
 
     private String code;
     public String name;
     public int capacity = 15;
-    public List<T> vehicles = new ArrayList<>();
+    public Set<T> parkedVehicles = new HashSet<>();
+    public Queue<T> waitingVehicles = new LinkedList<>();
     public List<TollGate> tollGates = new ArrayList<>();
 
     /**
@@ -59,7 +59,7 @@ public class Parking<T> implements Comparable<Parking>{
 
     public Integer calculateTotalPrice(){
         Integer price=0;
-       for(T v : vehicles){
+       for(T v : parkedVehicles){
             if(v instanceof UnregisteredTruck){
                 price += ((UnregisteredTruck) v).payTollGate();
             }else if(v instanceof  UnregisteredCar){
@@ -70,15 +70,29 @@ public class Parking<T> implements Comparable<Parking>{
         return price;
     }
 
-    public void add(T v){
-        vehicles.add(v);
+    public void park(T v){
+        if(parkedVehicles.size() >= capacity){
+            waitingVehicles.add(v);
+            System.out.println("Parking is full. " + waitingVehicles.size() + " cars waiting");
+        }else{
+            parkedVehicles.add(v);
+            System.out.println("Parking has " + parkedVehicles.size() + " cars parked.");
+        }
+    }
+
+    public void exit(T v){
+        parkedVehicles.remove(v);
+        if(!waitingVehicles.isEmpty()){
+            parkedVehicles.add(waitingVehicles.poll());
+            System.out.println("Parking has " + parkedVehicles.size() + " cars parked. " + waitingVehicles.size() + " cars waiting.");
+        }
     }
 
     @Override
     public int compareTo(Parking parking) {
-        if(this.vehicles.size() < parking.vehicles.size()){
+        if(this.parkedVehicles.size() < parking.parkedVehicles.size()){
             return 1;
-        }else if(this.vehicles.size() > parking.vehicles.size()){
+        }else if(this.parkedVehicles.size() > parking.parkedVehicles.size()){
             return -1;
         }
         return 0;
