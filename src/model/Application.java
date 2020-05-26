@@ -1,27 +1,28 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Application {
 
     public static void main(String[] args){
 
-        Parking pkg1 = new Parking("PKG1", "Port");
-        Parking pkg2 = new Parking("PKG2", "Massena");
-
         Map<String, List<Parking>> departmentMap = new HashMap<>();
-        List<Parking> nicesPkgs = new ArrayList<>();
-        nicesPkgs.add(pkg1);
-        nicesPkgs.add(pkg2);
-        departmentMap.put("Nice's parkings", nicesPkgs);
+        departmentMap.put("Nice's parkings", Arrays.asList(new Parking("PKG1", "Port"), new Parking("PKG2", "Massena")));
 
         for(Map.Entry<String, List<Parking>> entry : departmentMap.entrySet()){
             System.out.println("Department: " + entry.getKey());
             for(Parking pkg : entry.getValue()){
                 System.out.println("- " + pkg.name);
+            }
+        }
+
+        Iterator<String> it = departmentMap.keySet().iterator();
+        while(it.hasNext()) {
+            String department = it.next();
+            System.out.println("Department: " + department);
+            List<Parking> pkgList = departmentMap.get(department);
+            for(Parking pk : pkgList){
+                System.out.println("- " + pk.name);
             }
         }
 
