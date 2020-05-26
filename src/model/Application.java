@@ -1,32 +1,29 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Application {
 
     public static void main(String[] args){
 
-        Parking pkg1 = new Parking("PKG1", "Big parking");
-        pkg1.park(new UnregisteredCar("Ford", "1234"));
-        pkg1.park(new UnregisteredTruck("Ford", "2345"));
-        pkg1.park(new UnregisteredCar("Ford", "3456"));
-        pkg1.park(new UnregisteredCar("Ford", "4567"));
-        pkg1.park(new UnregisteredCar("Ford", "1111"));
-        pkg1.park(new UnregisteredTruck("Ford", "2222"));
-        pkg1.park(new UnregisteredCar("Ford", "3333"));
-        pkg1.park(new UnregisteredCar("Ford", "4444"));
-        pkg1.park(new UnregisteredTruck("Ford", "5555"));
-        pkg1.park(new UnregisteredCar("Ford", "6666"));
-        pkg1.park(new UnregisteredCar("Ford", "7777"));
-        pkg1.park(new UnregisteredCar("Ford", "8888"));
-        pkg1.park(new UnregisteredTruck("Ford", "9999"));
-        pkg1.park(new UnregisteredCar("Ford", "0000"));
-        UnregisteredCar uc = new UnregisteredCar("Ford", "0101");
-        pkg1.park(uc);
+        Parking pkg1 = new Parking("PKG1", "Port");
+        Parking pkg2 = new Parking("PKG2", "Massena");
 
-        pkg1.park(new UnregisteredCar("Ford", "2121"));
-        pkg1.park(new UnregisteredCar("Ford", "2323"));
+        Map<String, List<Parking>> departmentMap = new HashMap<>();
+        List<Parking> nicesPkgs = new ArrayList<>();
+        nicesPkgs.add(pkg1);
+        nicesPkgs.add(pkg2);
+        departmentMap.put("Nice's parkings", nicesPkgs);
 
-        pkg1.exit(uc);
-
+        for(Map.Entry<String, List<Parking>> entry : departmentMap.entrySet()){
+            System.out.println("Department: " + entry.getKey());
+            for(Parking pkg : entry.getValue()){
+                System.out.println("- " + pkg.name);
+            }
+        }
 
 
     }
