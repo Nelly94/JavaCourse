@@ -21,8 +21,9 @@ public class Parking<T> {
         public Direction direction;
         public Orientation orientation;
 
-        public TollGate(){
-
+        public TollGate(Direction direction, Orientation orientation){
+            this.direction = direction;
+            this.orientation = orientation;
         }
 
     }
@@ -46,16 +47,12 @@ public class Parking<T> {
     public Parking(String code, String name){
         this.code = code;
         this.name = name;
-        TollGate tg1 = new TollGate();
-        this.tollGates.add(tg1);
-        tg1.direction = Direction.IN;
-        tg1.orientation = Orientation.EAST;
+        TollGate tg1 = new TollGate(Direction.IN, Orientation.EAST);
         tg1.id = code + "#" + "door-" + this.tollGates.size();
-        TollGate tg2 = new TollGate();
-        this.tollGates.add(tg2);
-        tg2.direction = Direction.OUT;
-        tg2.orientation = Orientation.SOUTH;
+        this.tollGates.add(tg1);
+        TollGate tg2 = new TollGate(Direction.OUT, Orientation.SOUTH);
         tg2.id = code + "#" + "door-" + this.tollGates.size();
+        this.tollGates.add(tg2);
 
         System.out.println(name + " gates");
         for(TollGate tg: tollGates) {
