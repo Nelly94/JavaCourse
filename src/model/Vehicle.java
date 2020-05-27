@@ -2,7 +2,7 @@ package model;
 
 import java.util.Objects;
 
-public abstract class Vehicle {
+public abstract class Vehicle implements Cloneable {
 
     private static int count=0;
 
@@ -61,4 +61,11 @@ public abstract class Vehicle {
     public int hashCode() {
         return Objects.hash(plate);
     }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+
 }
