@@ -4,13 +4,13 @@ import java.util.HashMap;
 
 public class VehicleCache {
 
-    private HashMap<String, Vehicle> vehicleMap =  new HashMap<>();
+    private static HashMap<String, Vehicle> vehicleMap =  new HashMap<>();
 
-    public Vehicle getVehicle(String plate){
+    public static Vehicle getVehicle(String plate){
         return vehicleMap.get(plate);
     }
 
-    public void loadCache() throws CloneNotSupportedException {
+    public static void loadCache() throws CloneNotSupportedException {
         System.out.println("Loading data...");
 
         UnregisteredCar uc1 = new UnregisteredCar("Ford", "ABC12");
