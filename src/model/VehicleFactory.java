@@ -6,7 +6,7 @@ public abstract class VehicleFactory {
 
     public abstract Vehicle createUnregisteredVehicle(String brand, String plate);
 
-    public VehicleFactory getFactory(VehicleType type){
+    public static VehicleFactory getFactory(VehicleType type){
         if(type == VehicleType.CAR){
             return new CarFactory();
         }else{
