@@ -1,8 +1,6 @@
 package model;
 
 public enum VehicleType {
-    UNREGISTEREDCAR,
-    UNREGISTEREDTRUCK,
-    REGISTEREDCAR,
-    REGISTEREDTRUCK
+    CAR,
+    TRUCK
 }

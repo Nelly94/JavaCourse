@@ -1,24 +1,16 @@
 package model;
 
-public class VehicleFactory {
+public abstract class VehicleFactory {
 
-    public Vehicle createVehicle(VehicleType type, String brand, String plate){
-        Vehicle v = null;
-        switch(type){
-            case REGISTEREDCAR:
-                v = new RegisteredCar(brand, plate);
-                break;
-            case REGISTEREDTRUCK:
-                v = new RegisteredTruck(brand, plate);
-                break;
-            case UNREGISTEREDCAR:
-                v = new UnregisteredCar(brand, plate);
-                break;
-            case UNREGISTEREDTRUCK:
-                v = new UnregisteredTruck(brand, plate);
-                break;
+    public abstract Vehicle createRegisteredVehicle(String brand, String plate);
+
+    public abstract Vehicle createUnregisteredVehicle(String brand, String plate);
+
+    public VehicleFactory getFactory(VehicleType type){
+        if(type == VehicleType.CAR){
+            return new CarFactory();
+        }else{
+            return new TruckFactory();
         }
-
-        return v;
     }
 }
