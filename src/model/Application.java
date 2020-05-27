@@ -13,6 +13,9 @@ public class Application {
         VehicleCache vCache = new VehicleCache();
         vCache.loadCache();
 
+        Vehicle v = vCache.getVehicle("ABC12");
+        System.out.println(v.toString());
+
     }
 
 }

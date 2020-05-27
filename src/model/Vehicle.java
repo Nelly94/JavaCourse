@@ -67,5 +67,13 @@ public abstract class Vehicle implements Cloneable {
         return super.clone();
     }
 
-
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "id=" + id +
+                ", brand='" + brand + '\'' +
+                ", gaz=" + gaz +
+                ", plate='" + plate + '\'' +
+                '}';
+    }
 }
