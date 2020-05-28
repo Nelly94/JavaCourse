@@ -22,6 +22,14 @@ public class Application {
         UnregisteredTrailedCar utc = new UnregisteredTrailedCar(TrailSize.BIG, new UnregisteredCar("Ford", "XIS5"));
         System.out.println("Car " + utc.car.brand + " pays: " + utc.payTollGate());
 
+        CitySign cs = new CitySign("city sign info");
+        ParkingInfoApi pia = new ParkingInfoApi("www.pinfo.com");
+        Parking p = new Parking("PKG01", "Parking Massena");
+        p.addObserver(cs);
+        p.addObserver(pia);
+        p.park(new UnregisteredTruck("Ford","aaa"));
+
+
 
 
     }

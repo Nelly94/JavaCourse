@@ -2,7 +2,7 @@ package model;
 
 import java.util.*;
 
-public class Parking<T> implements Comparable<Parking>{
+public class Parking<T> extends Subject implements Comparable<Parking>{
 
     private String code;
     public String name;
@@ -78,6 +78,7 @@ public class Parking<T> implements Comparable<Parking>{
             parkedVehicles.add(v);
             System.out.println("Parking has " + parkedVehicles.size() + " cars parked.");
         }
+        notifyObservers();
     }
 
     public void exit(T v){
@@ -86,6 +87,7 @@ public class Parking<T> implements Comparable<Parking>{
             parkedVehicles.add(waitingVehicles.poll());
             System.out.println("Parking has " + parkedVehicles.size() + " cars parked. " + waitingVehicles.size() + " cars waiting.");
         }
+        notifyObservers();
     }
 
     @Override
@@ -96,5 +98,13 @@ public class Parking<T> implements Comparable<Parking>{
             return -1;
         }
         return 0;
+    }
+
+    @Override
+    public void notifyObservers() {
+        Integer freeSpots = capacity - parkedVehicles.size();
+        for(Observer obs: getObservers()){
+            obs.update(freeSpots.toString());
+        }
     }
 }
