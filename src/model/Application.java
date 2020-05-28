@@ -4,30 +4,25 @@ public class Application {
 
     public static void main(String[] args) throws CloneNotSupportedException {
 
-        VehicleFactory carFactory = VehicleFactory.getFactory(VehicleType.CAR);
-        VehicleFactory truckFactory = VehicleFactory.getFactory(VehicleType.TRUCK);
-
-        carFactory.createRegisteredVehicle("Ford", "ABC12");
-        truckFactory.createUnregisteredVehicle("Toyota", "RGS78");
-
-        VehicleCache vCache = new VehicleCache();
-        vCache.loadCache();
-
-        Vehicle v = vCache.getVehicle("ABC12");
-        System.out.println(v.toString());
-
-        UnregisteredCustomCar ucc = new UnregisteredCustomCar(new UnregisteredCar("Ferrari", "123"), 12, "Lux car");
-        System.out.println("Car " + ucc.car.brand + " pays: " + ucc.payTollGate());
-
-        UnregisteredTrailedCar utc = new UnregisteredTrailedCar(TrailSize.BIG, new UnregisteredCar("Ford", "XIS5"));
-        System.out.println("Car " + utc.car.brand + " pays: " + utc.payTollGate());
-
-        CitySign cs = new CitySign("city sign info");
-        ParkingInfoApi pia = new ParkingInfoApi("www.pinfo.com");
         Parking p = new Parking("PKG01", "Parking Massena");
-        p.addObserver(cs);
-        p.addObserver(pia);
         p.park(new UnregisteredTruck("Ford","aaa"));
+        p.park(new UnregisteredTruck("Ford","bbb"));
+        p.park(new UnregisteredTruck("Ford","ccc"));
+        p.park(new UnregisteredTruck("Ford","ddd"));
+        p.park(new UnregisteredTruck("Ford","eee"));
+        p.park(new UnregisteredTruck("Ford","fff"));
+        p.park(new UnregisteredTruck("Ford","ggg"));
+        p.park(new UnregisteredTruck("Ford","hhh"));
+        p.park(new UnregisteredTruck("Ford","iii"));
+        p.park(new UnregisteredTruck("Ford","jjj"));
+        p.park(new UnregisteredTruck("Ford","kkk"));
+        p.park(new UnregisteredTruck("Ford","lll"));
+        p.park(new UnregisteredTruck("Ford","mmm"));
+        p.park(new UnregisteredTruck("Ford","nnn"));
+        p.park(new UnregisteredTruck("Ford","ooo"));
+        p.park(new UnregisteredTruck("Ford","ppp"));
+
+
 
 
 

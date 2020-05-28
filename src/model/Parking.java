@@ -10,6 +10,7 @@ public class Parking<T> extends Subject implements Comparable<Parking>{
     public Set<T> parkedVehicles = new HashSet<>();
     public Queue<T> waitingVehicles = new LinkedList<>();
     public List<TollGate> tollGates = new ArrayList<>();
+    public State state;
 
     /**
      * Toll gate inner class
@@ -55,6 +56,8 @@ public class Parking<T> extends Subject implements Comparable<Parking>{
         for(TollGate tg: tollGates) {
             System.out.println("--Gate: " + tg.id);
         }
+        this.state = new OpenState();
+        System.out.println(state.getMessage(this));
     }
 
     public Integer calculateTotalPrice(){
@@ -74,6 +77,8 @@ public class Parking<T> extends Subject implements Comparable<Parking>{
         if(parkedVehicles.size() >= capacity){
             waitingVehicles.add(v);
             System.out.println("Parking is full. " + waitingVehicles.size() + " cars waiting");
+            this.state = new CloseState();
+            System.out.println(state.getMessage(this));
         }else{
             parkedVehicles.add(v);
             System.out.println("Parking has " + parkedVehicles.size() + " cars parked.");
@@ -87,6 +92,8 @@ public class Parking<T> extends Subject implements Comparable<Parking>{
             parkedVehicles.add(waitingVehicles.poll());
             System.out.println("Parking has " + parkedVehicles.size() + " cars parked. " + waitingVehicles.size() + " cars waiting.");
         }
+        this.state = new OpenState();
+        System.out.println(state.getMessage(this));
         notifyObservers();
     }
 
@@ -102,9 +109,13 @@ public class Parking<T> extends Subject implements Comparable<Parking>{
 
     @Override
     public void notifyObservers() {
-        Integer freeSpots = capacity - parkedVehicles.size();
         for(Observer obs: getObservers()){
-            obs.update("Parking has " + freeSpots.toString() + " free spots.");
+            obs.update("Parking has " + getFreeSpots().toString() + " free spots.");
         }
     }
+
+    public Integer getFreeSpots(){
+        return capacity - parkedVehicles.size();
+    }
+
 }
