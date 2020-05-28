@@ -104,7 +104,7 @@ public class Parking<T> extends Subject implements Comparable<Parking>{
     public void notifyObservers() {
         Integer freeSpots = capacity - parkedVehicles.size();
         for(Observer obs: getObservers()){
-            obs.update(freeSpots.toString());
+            obs.update("Parking has " + freeSpots.toString() + " free spots.");
         }
     }
 }

@@ -11,7 +11,6 @@ public class CitySign extends Observer {
 
     @Override
     public void update(String message) {
-        System.out.println("City sign:");
-        System.out.println("Parking has " + message + " free spots");
+        System.out.println("City sign: " + message);
     }
 }
